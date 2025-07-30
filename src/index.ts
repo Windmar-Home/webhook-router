@@ -16,6 +16,7 @@ import { SlackService } from './services/slack.service';
 export interface Env {
 	// Add your environment variables here
 	SECRET_SLACK_API_KEY: string;
+	DEFAULT_WEBHOOK_URL: string;
 }
 
 // Define the expected payload structure
@@ -81,11 +82,12 @@ export default {
 			const payload = await request.json() as WebhookPayload;
 
 			// Extract webhook URL from payload
-			const webhookUrl = payload?.contactMetadata?.webhookUrl;
+			let webhookUrl = payload?.contactMetadata?.webhookUrl;
 
 			// Validate webhook URL
 			if (!webhookUrl || !isValidUrl(webhookUrl)) {
-				return new Response('Invalid webhook URL', { status: 400 });
+				// Fallback to secondary webhook if not provided or invalid
+				webhookUrl = env.DEFAULT_WEBHOOK_URL;
 			}
 
 			// Prevent infinite loops by checking if webhook URL is pointing to our own endpoint
