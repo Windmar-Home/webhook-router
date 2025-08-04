@@ -16,7 +16,7 @@ import { SlackService } from './services/slack.service';
 export interface Env {
 	// Add your environment variables here
 	SECRET_SLACK_API_KEY: string;
-	DEFAULT_WEBHOOK_URL: string;
+	API_KEY: string;
 }
 
 // Define the expected payload structure
@@ -87,7 +87,7 @@ export default {
 			// Validate webhook URL
 			if (!webhookUrl || !isValidUrl(webhookUrl)) {
 				// Fallback to secondary webhook if not provided or invalid
-				webhookUrl = env.DEFAULT_WEBHOOK_URL;
+				webhookUrl = `https://www.windmar.com/ApiWindmarHome/v1/PR/leads?Api_Key=${env.API_KEY}`;
 			}
 
 			// Prevent infinite loops by checking if webhook URL is pointing to our own endpoint
