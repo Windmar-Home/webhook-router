@@ -87,7 +87,7 @@ export default {
 			// Validate webhook URL
 			if (!webhookUrl || !isValidUrl(webhookUrl)) {
 				// Fallback to secondary webhook if not provided or invalid
-				webhookUrl = `https://www.windmar.com/ApiWindmarHome/v1/PR/leads?Api_Key=${env.API_KEY}`;
+				webhookUrl = `https://www.windmar.com/ApiWindmarHome/v1/PR/leads?Api_Key=prod_sai_VBGLab2H6tnWu8`;
 			}
 
 			// Prevent infinite loops by checking if webhook URL is pointing to our own endpoint
