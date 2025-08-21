@@ -4,7 +4,7 @@
  */
 {
 	"$schema": "node_modules/wrangler/config-schema.json",
-	"name": "webhook-router",
+	"name": "setter-ai-router",
 	"main": "src/index.ts",
 	"compatibility_date": "2025-02-24",
 	"observability": {
